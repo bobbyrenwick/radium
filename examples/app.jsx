@@ -38,16 +38,41 @@ class TwoSquares extends React.Component {
   }
 }
 
-var Spinner = React.createClass({
+var TestOutIEWithRadium = React.createClass({
+
+  getDefaultProps() {
+    return {
+      text: "hello"
+    }
+  },
+
   render: function () {
     return (
       <div>
-        <div style={spinnerStyles.inner} />
+        <div>{this.props.text || "default doesn't work"}</div>
       </div>
     );
   }
 });
-Spinner = Radium(Spinner);
+TestOutIEWithRadium = Radium(TestOutIEWithRadium);
+
+var TestOutIEWithoutRadium = React.createClass({
+
+  getDefaultProps() {
+    return {
+      text: "hello"
+    }
+  },
+
+  render: function () {
+    return (
+      <div>
+        <div>{this.props.text || "default doesn't work"}</div>
+      </div>
+    );
+  }
+});
+TestOutIEWithoutRadium = TestOutIEWithoutRadium;
 
 var App = React.createClass({
 
@@ -70,7 +95,8 @@ var App = React.createClass({
 
         <p><TwoSquares /></p>
 
-        <p><Spinner /></p>
+        <p><TestOutIEWithRadium /></p>
+        <p><TestOutIEWithoutRadium /></p>
 
         <p>
           <Button onClick={this._remount}>Unmount and remount</Button>
